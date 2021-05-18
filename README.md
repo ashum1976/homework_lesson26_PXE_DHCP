@@ -72,7 +72,7 @@ fixed-address 10.20.20.10;
 
 - **PXELINUX config file (default)**
 
-#      default menu
+      default menu
       default vesamenu.c32
       prompt 0
       timeout 600
