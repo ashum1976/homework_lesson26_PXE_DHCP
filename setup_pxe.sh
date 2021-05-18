@@ -41,10 +41,7 @@ systemctl start tftp.service
 yum -y --nogpgcheck install syslinux-tftpboot.noarch
 mkdir /var/lib/tftpboot/pxelinux
 cp /var/lib/tftpboot/pxelinux.0 /var/lib/tftpboot/pxelinux
-#cp  /var/lib/tftpboot/libutil.c32 /var/lib/tftpboot/pxelinux
 cp  /var/lib/tftpboot/menu.c32 /var/lib/tftpboot/pxelinux
-#cp  /var/lib/tftpboot/libmenu.c32 /var/lib/tftpboot/pxelinux
-#cp  /var/lib/tftpboot//ldlinux.c32 /var/lib/tftpboot/pxelinux
 cp  /var/lib/tftpboot/vesamenu.c32 /var/lib/tftpboot/pxelinux
 cp  /var/lib/tftpboot/chain.c32 /var/lib/tftpboot/pxelinux
 
