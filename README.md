@@ -107,9 +107,9 @@ fixed-address 10.20.20.10;
 
 - **Configuring a TFTP server for UEFI-based clients**
 
-  1. yum install tftp-server
-  2. firewall-cmd --add-service=tftp
-  3. Configure your DHCP server to use the boot images packaged with shim. A sample configuration in the /etc/dhcp/dhcpd.conf file might look like:
+1. yum install tftp-server
+2. firewall-cmd --add-service=tftp
+3. Configure your DHCP server to use the boot images packaged with shim. A sample configuration in the /etc/dhcp/dhcpd.conf file might look like:
 
           option space pxelinux;
           option pxelinux.magic code 208 = string;
@@ -133,22 +133,22 @@ fixed-address 10.20.20.10;
         		}
           }
         }
-  4. Скачать из репозитория локального или удалённого файлы, для загрузки shim.efi и grubx64.efi
+4. Скачать из репозитория локального или удалённого файлы, для загрузки shim.efi и grubx64.efi
 
           curl -O http://ftp.mgts.by/pub/CentOS/8.3.2011/BaseOS/x86_64/os/Packages/shim-x64-15-15.el8_2.x86_64.rpm
           curl -O http://ftp.mgts.by/pub/CentOS/8.3.2011/BaseOS/x86_64/os/Packages/grub2-efi-x64-2.02-90.el8_3.1.x86_64.rpm
 
-  5. Разархивировать пакеты, достать нужные файлы
+5. Разархивировать пакеты, достать нужные файлы
 
           rpm2cpio shim-x64-15-15.el8_2.x86_64.rpm  | cpio -dimv
           rpm2cpio grub2-efi-x64-2.02-90.el8_3.1.x86_64.rpm | cpio -dimv
 
-  6. Создать каталог и скопировать файлы
+6. Создать каталог и скопировать файлы
 
           cp ./boot/efi/EFI/centos/grubx64.efi /var/lib/tftpboot/uefi/
           cp ./boot/efi/EFI/centos/shimx64.efi /var/lib/tftpboot/uefi/shim.efi    <---- Переименовать файл shimx64.efi в shim.efi
 
-  7. Создать конфиг файл grub.cfg
+7. Создать конфиг файл grub.cfg
 
           cat> /var/lib/tftpboot/uefi/grub.cfg <<EOF
           set timeout=60
@@ -158,6 +158,6 @@ fixed-address 10.20.20.10;
 
           }
           EOF
-  8. Копирование файлов vmlinuz и initrd
+8. Копирование файлов vmlinuz и initrd
 
           cp {vmlinuz,initrd.img} /var/lib/tftpboot/pxelinux/images/CentOS-8.3
